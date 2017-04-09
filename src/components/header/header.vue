@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <p>header!!!</p>
+    <p>{{ msg }}</p>
   </div>
 </template>
 
@@ -9,13 +9,13 @@ export default {
   name: 'header',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Header'
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style type="stylus" rel="text/stylus">
+<style type="stylus" scoped>
 
 </style>
