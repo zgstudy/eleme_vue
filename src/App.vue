@@ -25,9 +25,11 @@ export default {
   display: flex
   justify-content: space-between
   .tab-item
+    flex: 1
+    text-align: center
     height: 40px
-    font-size: 14px
-    line-height: 14px
+    // font-size: 14px
+    // line-height: 14px
     color: rgb(77,85,93)
     &.active
       color: rgb(240,20,20)

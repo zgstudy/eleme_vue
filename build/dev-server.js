@@ -23,7 +23,33 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+var router = express.Router()
+var appData = require('../data/data.json')
+var goods = appData.goods
+var seller = appData.seller
+var ratings = appData.ratings
 var compiler = webpack(webpackConfig)
+
+router.get('/goods', function(req, res){
+  res.json({
+    errno: 0,
+    data: goods
+  })
+})
+router.get('/seller', function(req, res){
+  res.json({
+    errno: 0,
+    data: seller
+  })
+})
+router.get('/ratings', function(req, res){
+  res.json({
+    errno: 0,
+    data: ratings
+  })
+})
+
+app.use('/api', router)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
@@ -39,6 +65,10 @@ compiler.plugin('compilation', function (compilation) {
     hotMiddleware.publish({ action: 'reload' })
     cb()
   })
+})
+
+router.get('/goods', function (req, res) {
+
 })
 
 // proxy api requests
