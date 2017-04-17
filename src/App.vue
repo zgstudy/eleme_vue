@@ -6,9 +6,6 @@
       <div class="tab-item"><router-link to="/star">评价</router-link></div>
       <div class="tab-item"><router-link to="/seller">商家</router-link></div>
     </div>
-    <div class="content">
-      I am content.
-    </div>
     <router-view></router-view>
   </div>
 </template>
