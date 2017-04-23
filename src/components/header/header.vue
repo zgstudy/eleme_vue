@@ -1,16 +1,32 @@
 <template>
   <div class="header">
-    <p>{{ msg }}</p>
+    <div class="content-wrap">
+      <div class="avatar">
+        <img :src="seller.avatar" width="64" height="64" alt="">
+      </div>
+    </div>
+    <div class="note">
+
+    </div>
+    <div class="background"></div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'header',
+  props: {
+    seller: {
+      type: Object
+    }
+  },
   data () {
     return {
-      msg: 'Header'
+
     }
+  },
+  created () {
+
   }
 }
 </script>

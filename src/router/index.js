@@ -7,6 +7,7 @@ import Star from '@/components/star/star';
 Vue.use(Router);
 
 export default new Router({
+  linkActiveClass: 'active',
   routes: [{
     path: '/goods',
     name: 'Goods',

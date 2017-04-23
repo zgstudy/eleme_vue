@@ -29,22 +29,23 @@ var goods = appData.goods
 var seller = appData.seller
 var ratings = appData.ratings
 var compiler = webpack(webpackConfig)
+const ERR_OK = 0
 
 router.get('/goods', function(req, res){
   res.json({
-    errno: 0,
+    errno: ERR_OK,
     data: goods
   })
 })
 router.get('/seller', function(req, res){
   res.json({
-    errno: 0,
+    errno: ERR_OK,
     data: seller
   })
 })
 router.get('/ratings', function(req, res){
   res.json({
-    errno: 0,
+    errno: ERR_OK,
     data: ratings
   })
 })
