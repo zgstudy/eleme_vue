@@ -29,3 +29,9 @@ border-lf-onepx($color = rgba(1,17,27,0.1), $dir = 'left')
     height: 100%
     border-left: 1px solid $color
     content: ' '
+    
+bg-img($urlPath)
+  background-image: url($urlPath + '@2x.png')
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3)
+    background-image: url($urlPath + '@3x.png')
+  
