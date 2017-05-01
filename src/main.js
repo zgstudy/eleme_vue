@@ -22,6 +22,6 @@ new Vue({
   template: '<App/>',
   components: { App }
 });
-
-// router.go('/goods');
+// 初始化路由到商品页面
+Router.push('goods');
 

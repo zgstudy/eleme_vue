@@ -17,21 +17,38 @@
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
-      <div v-if="seller.supports" class="supports-count">
+      <div v-if="seller.supports" class="supports-count" @click="showDetail">
         <span class="count">{{seller.supports.length}}个</span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrap">
+    <div class="bulletin-wrap" @click="showDetail">
       <span class="icon"></span><span class="text">{{seller.bulletin}}</span><i class="icon-keyboard_arrow_right"></i>
     </div>
-    <div class="background"></div>
+    <div class="background">
+      <img :src="seller.avatar" width="100%" alt="">
+    </div>
+    <div v-show="detailShow" class="detail">
+      <div class="detail-wrap clearfix">
+        <div class="detail-main">
+          <p>{{seller.bulletin}}</p>
+          <v-star :size="48" :score="4.4"></v-star>
+          <p>{{seller.bulletin}}</p>
+          <p>{{seller.bulletin}}</p>
+        </div>
+      </div>
+      <div class="detail-close" @click="closeDetail"><i class="icon-close"></i></div>
+    </div>
   </div>
 </template>
 
 <script>
+import Star from '@/components/star/star';
 export default {
   name: 'header',
+  components: {
+    'v-star': Star
+  },
   props: {
     seller: {
       type: Object
@@ -39,6 +56,15 @@ export default {
   },
   data () {
     return {
+      detailShow: false
+    }
+  },
+  methods: {
+    showDetail () {
+      this.detailShow = true;
+    },
+    closeDetail () {
+      this.detailShow = false;
     }
   },
   created () {
@@ -51,9 +77,10 @@ export default {
 <style lang="stylus" scoped>
 @import '../../common/stylus/mixin.styl';
 .header
-  /*height: 80px*/
+  position: relative
+  overflow: hidden
   color: #fff
-  background-color: rgba(7, 17, 127, 0.5)
+  background-color: rgba(7, 17, 27, 0.5)
   .content-wrap
     position: relative
     height: 64px
@@ -138,7 +165,7 @@ export default {
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
-    background-color: rgba(7, 17, 127, 0.2)
+    background-color: rgba(7, 17, 27, 0.2)
     .icon
       display: inline-block
       vertical-align: top
@@ -159,4 +186,33 @@ export default {
       margin-top: -6px
       display: inline-block
       font-size: 10px
+  .background
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    z-index: -1
+
+    filter: blur(10px)
+  .detail
+    position: fixed
+    z-index: 100
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    overflow: auto
+    background-color: rgba(7, 17, 27, 0.8)
+    // filter: blur(10px)
+    .detail-wrap
+      min-height: 100%
+      .detail-main
+        margin-top: 64px
+        padding-bottom: 64px
+    .detail-close
+      margin: -64px auto 0
+      width: 32px
+      height: 32px
+      font-size: 32px
 </style>
