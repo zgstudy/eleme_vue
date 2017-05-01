@@ -12,7 +12,7 @@
         <div class="description">
           {{seller.description}} / {{seller.deliveryTime}}分钟送达
         </div>
-        <div v-if="seller.supports" class="supports">
+        <div v-if="seller.supports" class="support">
           <span class="icon" :class="classMap[seller.supports[0].type]"></span>
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
@@ -28,17 +28,32 @@
     <div class="background">
       <img :src="seller.avatar" width="100%" alt="">
     </div>
-    <div v-show="detailShow" class="detail">
-      <div class="detail-wrap clearfix">
-        <div class="detail-main">
-          <p>{{seller.bulletin}}</p>
-          <v-star :size="48" :score="4.4"></v-star>
-          <p>{{seller.bulletin}}</p>
-          <p>{{seller.bulletin}}</p>
+    <transition name="fade">
+      <div v-show="detailShow" class="detail">
+        <div class="detail-wrap clearfix">
+          <div class="detail-main">
+            <h1 class="title">{{seller.name}}</h1>
+            <div class="star-wrap">
+              <v-star :size="48" :score="seller.score"></v-star>
+            </div>
+            <div class="line-info">
+              <p class="txt">优惠信息</p>
+            </div>
+            <ul v-if="seller.supports" class="support-list">
+              <li v-for="support in seller.supports" class="support-item">
+                <span class="icon" :class="classMap[support.type]"></span>
+                <span class="text">{{support.description}}</span>
+              </li>
+            </ul>
+            <div class="line-info">
+              <p class="txt">商家公告</p>
+            </div>
+            <p class="bulletin">{{seller.bulletin}}</p>
+          </div>
         </div>
+        <div class="detail-close" @click="closeDetail"><i class="icon-close"></i></div>
       </div>
-      <div class="detail-close" @click="closeDetail"><i class="icon-close"></i></div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -116,7 +131,7 @@ export default {
         font-size: 12px
         line-height: 12px
         margin: 8px 0 10px
-      .supports
+      .support
         margin: 10px 0 2px
         font-size: 0
         .icon
@@ -204,15 +219,81 @@ export default {
     height: 100%
     overflow: auto
     background-color: rgba(7, 17, 27, 0.8)
-    // filter: blur(10px)
+    backdrop-filter: blur(10px)
     .detail-wrap
+      width: 100%
       min-height: 100%
       .detail-main
-        margin-top: 64px
+        margin: 64px 36px 0
         padding-bottom: 64px
+        .title
+          font-size: 16px
+          line-height: 16px
+          font-weight: 700
+          text-align: center
+        .star-wrap
+          margin: 16px auto 0
+          text-align: center
+        .line-info
+          display: flex
+          margin: 30px 0 24px
+          &::before
+            position: relative
+            display: block
+            content: ''
+            flex: 1
+            top: -6px
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+          &::after
+            position: relative
+            display: block
+            content: ''
+            flex: 1
+            top: -6px
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+          .txt
+            font-size: 14px
+            font-weight: 700
+            padding: 0 12px
+        .support-list
+          margin: 0 12px
+          .support-item
+            font-size: 0
+            margin-top: 12px
+            .icon
+              display: inline-block
+              vertical-align: top
+              width: 16px
+              height: 16px
+              background-size: 16px 16px
+              background-repeat: no-repeat
+              &.decrease
+                bg-img('./img/decrease_1')
+              &.discount
+                bg-img('./img/discount_1')
+              &.guarantee
+                bg-img('./img/guarantee_1')
+              &.invoice
+                bg-img('./img/invoice_1')
+              &.special
+                bg-img('./img/special_1')
+            .text
+              margin-left: 6px
+              font-size: 12px
+              line-height: 14px
+        .bulletin
+          margin: 0 12px
+          font-size: 12px
+          line-height: 24px
     .detail-close
       margin: -64px auto 0
       width: 32px
       height: 32px
       font-size: 32px
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
+  }
 </style>
