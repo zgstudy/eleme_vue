@@ -25,7 +25,7 @@ export default {
   created () {
     this.$http.get('/api/goods').then((res) => {
       let d = res.data;
-      if(d.errno === ERR_OK){
+      if (d.errno === ERR_OK) {
         this.goods = d.data;
       } else {
         console.error('get "/api/goods" has error!');
@@ -33,7 +33,7 @@ export default {
     });
     this.$http.get('/api/seller').then((res) => {
       let d = res.data;
-      if(d.errno === ERR_OK){
+      if (d.errno === ERR_OK) {
         this.seller = d.data;
       } else {
         console.error('get "/api/seller" has error!');
@@ -41,7 +41,7 @@ export default {
     });
     this.$http.get('/api/ratings').then((res) => {
       let d = res.data;
-      if(d.errno === ERR_OK){
+      if (d.errno === ERR_OK) {
         this.ratings = d.data;
       } else {
         console.error('get "/api/ratings" has error!');

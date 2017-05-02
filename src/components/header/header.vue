@@ -72,7 +72,7 @@ export default {
   data () {
     return {
       detailShow: false
-    }
+    };
   },
   methods: {
     showDetail () {
@@ -86,7 +86,7 @@ export default {
     // 支持相关信息根据type编写成数组，方便读取对应的标识icon图片
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

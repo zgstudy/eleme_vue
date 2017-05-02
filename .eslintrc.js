@@ -3,6 +3,7 @@
 module.exports = {
   root: true,
   parser: 'babel-eslint',
+  extends: 'vue',
   parserOptions: {
     sourceType: 'module'
   },

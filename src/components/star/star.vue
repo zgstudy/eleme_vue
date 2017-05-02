@@ -22,9 +22,7 @@ export default {
     }
   },
   data () {
-    return {
-      
-    }
+    return {};
   },
   computed: {
     starType () {
@@ -38,17 +36,17 @@ export default {
       for (let i = 1; i < scoreTemp; i++) {
         result.push(CLS_ON);
       }
-      if(hasDecimals){
+      if (hasDecimals) {
         result.push(CLS_HALF);
       }
-      while(result.length < LENGTH){
+      while (result.length < LENGTH) {
         result.push(CLS_OFF);
       }
       console.log('result::', result);
       return result;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
